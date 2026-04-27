@@ -2,14 +2,14 @@ terraform {
   required_providers {
     snowflake = {
       source  = "Snowflake-Labs/snowflake"
-      version = "0.63.0"
+      version >= "1.0.0"
     }
   }
 
   backend "s3" {
-    bucket         = "<your-bucket-name>"
+    bucket         = "arn:aws:s3:::prasad-snowflake-demo"
     key            = "terraform-prod.tfstate"
-    region         = "<bucket-region>"
+    region         = "US East (N. Virginia) us-east-1"
     # Optional DynamoDB for state locking. See https://developer.hashicorp.com/terraform/language/settings/backends/s3 for details.
     # dynamodb_table = "terraform-state-lock-table"
     encrypt        = true
@@ -18,9 +18,9 @@ terraform {
 }
 
 provider "snowflake" {
-  username    = "<your_snowflake_username>"
-  account     = "<your_snowflake_account_identifier>"
-  role        = "<your_snowflake_role>"
+  username    = "PBAPATLAAP"
+  account     = "ZDXBILS-FXC86730"
+  role        = "ACCOUNTADMIN"
   private_key = var.snowflake_private_key
 }
 
