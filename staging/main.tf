@@ -2,7 +2,7 @@ terraform {
   required_providers {
     snowflake = {
       source  = "snowflakedb/snowflake"
-      version = "1.0.0"
+      version = ">= 1.0.0"
     }
   }
 
@@ -21,12 +21,7 @@ terraform {
   }
 }
 
-provider "snowflake" {
-  username    = "PBAPATLAAP"
-  account     = "ZDXBILS-FXC86730"
-  role        = "ACCOUNTADMIN"
-  private_key = var.snowflake_private_key
-}
+provider "snowflake" {}
 
 module "snowflake_resources" {
   source              = "../modules/snowflake_resources"
