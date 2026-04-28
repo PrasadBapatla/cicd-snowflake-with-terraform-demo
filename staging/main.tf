@@ -7,7 +7,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "arn:aws:s3:::prasad-snowflake-demo"
+    bucket         = "prasad-snowflake-demo"
     key            = "terraform-staging.tfstate"
     region         = "us-east-1"
     # Optional DynamoDB for state locking. See https://developer.hashicorp.com/terraform/language/settings/backends/s3 for details.
