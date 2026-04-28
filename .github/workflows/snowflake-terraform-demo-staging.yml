@@ -1,5 +1,13 @@
 name: "STAGING ENV: Snowflake Terraform Demo Workflow"
 
+
+env:
+    SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+    SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
+    SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+    SNOWFLAKE_AUTHENTICATOR: SNOWFLAKE_JWT
+    SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
+
 on: 
   push:
     branches: 
