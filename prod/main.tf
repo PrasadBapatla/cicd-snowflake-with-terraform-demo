@@ -9,11 +9,14 @@ terraform {
   backend "s3" {
     bucket         = "arn:aws:s3:::prasad-snowflake-demo"
     key            = "terraform-prod.tfstate"
-    region         = "US East (N. Virginia) us-east-1"
+    region         = "us-east-1"
     # Optional DynamoDB for state locking. See https://developer.hashicorp.com/terraform/language/settings/backends/s3 for details.
     # dynamodb_table = "terraform-state-lock-table"
     encrypt        = true
-    role_arn       = "arn:aws:iam::<your-aws-account-no>:role/<terraform-s3-backend-access-role>"
+    assume_role= { 
+       role_arn  = "arn:aws:iam::222259241209:role/prasad-snowflake-demo-s3"
+       session_name = "terraform-session" # Optional
+    }
   }
 }
 
