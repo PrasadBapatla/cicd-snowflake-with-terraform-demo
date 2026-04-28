@@ -7,7 +7,6 @@ env:
     SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
     SNOWFLAKE_AUTHENTICATOR: SNOWFLAKE_JWT
     SNOWFLAKE_PRIVATE_KEY: ${{ secrets.SNOWFLAKE_PRIVATE_KEY }}
-
 on: 
   push:
     branches: 
