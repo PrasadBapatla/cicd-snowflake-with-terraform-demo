@@ -54,6 +54,7 @@ jobs:
       - name: Terraform Plan
         id: plan
         run: terraform -chdir=./staging plan 
+        timeout-minutes: 10
         env:
                 
           SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
