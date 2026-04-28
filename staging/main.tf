@@ -21,9 +21,7 @@ terraform {
   }
 }
 
-provider "snowflake" {
-  authenticator = "SNOWFLAKE_JWT"
-}
+provider "snowflake" {}
 
 module "snowflake_resources" {
   source              = "../modules/snowflake_resources"
