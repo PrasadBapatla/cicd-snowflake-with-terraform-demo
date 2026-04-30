@@ -1,44 +1,29 @@
-resource "snowflake_database_grant" "database_ro_grant" {
-  database_name = snowflake_database.tf_demo_database.name
+resource "snowflake_grant_privileges_to_account_role" "database_ro" {
+  account_role_name = "TF_DEMO_READER"
+  privileges        = ["USAGE"]
 
-  privilege = "USAGE"
-  roles     = ["TF_DEMO_READER"]
+  on_account_object {
+    object_type = "DATABASE"
+    object_name = snowflake_database.tf_demo_database.name
+  }
 }
 
-resource "snowflake_schema_grant" "schema_ro_grant" {
-  database_name = snowflake_database.tf_demo_database.name
-  schema_name   = snowflake_schema.tf_demo_schema.name
+resource "snowflake_grant_privileges_to_account_role" "schema_usage" {
+  account_role_name = "TF_DEMO_READER"
+  privileges        = ["USAGE"]
 
-  privilege = "USAGE"
-  roles     = ["TF_DEMO_READER"]
+  on_schema {
+    # schema_name = snowflake_schema.tf_demo_schema.name
+    schema_name = "${snowflake_database.tf_demo_database.name}.${snowflake_schema.tf_demo_schema.name}"
+  }
 }
 
-resource "snowflake_table_grant" "table_ro_grant" {
-  database_name = snowflake_database.tf_demo_database.name
-  schema_name   = snowflake_schema.tf_demo_schema.name
+resource "snowflake_grant_privileges_to_account_role" "warehouse_usage" {
+  account_role_name = "TF_DEMO_READER"
+  privileges        = ["USAGE"]
 
-  privilege = "SELECT"
-  roles     = ["TF_DEMO_READER"]
-
-  on_future         = true
-  with_grant_option = false
-  on_all            = false
-}
-
-resource "snowflake_view_grant" "view_ro_grant" {
-  database_name = snowflake_database.tf_demo_database.name
-  schema_name   = snowflake_schema.tf_demo_schema.name
-
-  privilege = "SELECT"
-  roles     = ["TF_DEMO_READER"]
-
-  on_future         = true
-  with_grant_option = false
-  on_all            = false
-}
-
-resource "snowflake_warehouse_grant" "warehouse_grant" {
-  warehouse_name = snowflake_warehouse.task_warehouse.name
-  privilege      = "USAGE"
-  roles          = ["TF_DEMO_READER"]
+  on_account_object {
+    object_type = "WAREHOUSE"
+    object_name = snowflake_warehouse.task_warehouse.name
+  }
 }

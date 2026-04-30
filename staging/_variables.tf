@@ -8,8 +8,14 @@ variable "env_name" {
   default = "STAGING"
 }
 
-variable "snowflake_private_key" {
+variable "snowflake_account_name" {
   type        = string
-  description = "Private key used to access Snowflake"
-  sensitive   = true
+  description = "Snowflake account name"
+  default     = "FXC86730"
+}
+
+variable "snowflake_organization_name" {
+  type        = string
+  description = "Snowflake organization name"
+  default     = "ZDXBILS"
 }
