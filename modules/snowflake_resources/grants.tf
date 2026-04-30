@@ -13,7 +13,8 @@ resource "snowflake_grant_privileges_to_account_role" "schema_usage" {
   privileges        = ["USAGE"]
 
   on_schema {
-    schema_name = snowflake_schema.tf_demo_schema.name
+    # schema_name = snowflake_schema.tf_demo_schema.name
+    schema_name = "${snowflake_database.tf_demo_database.name}.${snowflake_schema.tf_demo_schema.name}"
   }
 }
 
