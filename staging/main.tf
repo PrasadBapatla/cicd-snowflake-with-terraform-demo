@@ -22,9 +22,9 @@ terraform {
 }
 
 provider "snowflake" {
-  account_name = var.snowflake_account_name
+  account_name      = var.snowflake_account_name
   organization_name = var.snowflake_organization_name
-   }
+}
 
 module "snowflake_resources" {
   source              = "../modules/snowflake_resources"
